@@ -1,0 +1,27 @@
+[
+  {
+    "name": "default",
+    "type": "postgres",
+    "host": "ruby.db.elephantsql.com",
+    "port": 5432,
+    "database": "pfwiwuyh",
+    "username": "pfwiwuyh",
+    "password": "CmtCXPYr_AxLyDv79xHsO9P8YXgzNd17",
+    "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
+    "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
+    "cli": {
+      "migrationsDir": "./src/shared/infra/typeorm/migrations"
+    }
+  },
+  {
+    "name": "mongo",
+    "type": "mongodb",
+    "host": "ds263448.mlab.com",
+    "port": 63448,
+    "database": "fbquest",
+    "username": "admin",
+    "password": "admin123",
+    "useUnifiedTopology": "true",
+    "entities": ["./src/modules/**/infra/typeorm/schemas/*.ts"]
+  }
+]
