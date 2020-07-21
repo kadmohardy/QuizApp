@@ -1,13 +1,6 @@
-import {
-  ObjectID,
-  Entity,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  ObjectIdColumn,
-} from 'typeorm';
+import { ObjectID, Entity, Column, ObjectIdColumn } from 'typeorm';
 
-@Entity('questions')
+@Entity('options')
 class Question {
   @ObjectIdColumn()
   id: ObjectID;

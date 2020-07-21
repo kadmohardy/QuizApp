@@ -1,14 +1,14 @@
-import { getRepository, Repository } from 'typeorm';
+import { getMongoRepository, MongoRepository } from 'typeorm';
 
 import IQuestionsRepository from '@modules/questions/repositories/IQuestionsRepository';
 import ICreateQuestionDTO from '@modules/questions/dtos/ICreateQuestionDTO';
 import Question from '../schemas/Question';
 
 class QuestionsRepository implements IQuestionsRepository {
-  private ormRepository: Repository<Question>;
+  private ormRepository: MongoRepository<Question>;
 
   constructor() {
-    this.ormRepository = getRepository(Question);
+    this.ormRepository = getMongoRepository(Question, 'mongo');
   }
 
   public async findById(id: string): Promise<Question | undefined> {

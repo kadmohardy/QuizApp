@@ -1,4 +1,4 @@
-export default interface IQuestionOptionDTO {
+export default interface ICreateQuestionOptionDTO {
   letra: string;
   correta: boolean;
   texto: string;

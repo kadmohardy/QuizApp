@@ -21,7 +21,7 @@ interface IRequest {
 }
 
 @injectable()
-class CreateQuestionService {
+class GetMockService {
   constructor(
     @inject('QuestionsRepository')
     private QuestionsRepository: IQuestionsRepository
@@ -52,4 +52,4 @@ class CreateQuestionService {
   }
 }
 
-export default CreateQuestionService;
+export default GetMockService;

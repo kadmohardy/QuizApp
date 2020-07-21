@@ -7,6 +7,8 @@ import {
   ObjectIdColumn,
 } from 'typeorm';
 
+import Option from './Option';
+
 @Entity('questions')
 class Question {
   @ObjectIdColumn()
@@ -32,6 +34,9 @@ class Question {
 
   @Column({ default: false })
   disponivel: boolean;
+
+  @Column(type => Option)
+  alternativas: Option[];
 
   @CreateDateColumn()
   created_at: Date;
