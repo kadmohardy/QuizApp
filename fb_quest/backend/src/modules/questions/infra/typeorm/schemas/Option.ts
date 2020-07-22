@@ -1,7 +1,7 @@
 import { ObjectID, Entity, Column, ObjectIdColumn } from 'typeorm';
 
 @Entity('options')
-class Question {
+class Option {
   @ObjectIdColumn()
   id: ObjectID;
 
@@ -9,10 +9,10 @@ class Question {
   letra: string;
 
   @Column()
-  correta: string;
+  correta: boolean;
 
   @Column()
   texto: string;
 }
 
-export default Question;
+export default Option;

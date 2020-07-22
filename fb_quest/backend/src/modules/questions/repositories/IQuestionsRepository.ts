@@ -6,4 +6,5 @@ export default interface IQuestionsRepository {
   findByCode(data: string): Promise<Question | undefined>;
   create(data: ICreateQuestionDTO): Promise<Question>;
   save(data: Question): Promise<Question>;
+  findRandomQuestionsByCount(questionsCount: number): Promise<Question[]>;
 }

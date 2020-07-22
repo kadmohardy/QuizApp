@@ -3,6 +3,7 @@ import { getMongoRepository, MongoRepository } from 'typeorm';
 import IQuestionsRepository from '@modules/questions/repositories/IQuestionsRepository';
 import ICreateQuestionDTO from '@modules/questions/dtos/ICreateQuestionDTO';
 import Question from '../schemas/Question';
+import mongoose from 'mongoose';
 
 class QuestionsRepository implements IQuestionsRepository {
   private ormRepository: MongoRepository<Question>;
@@ -11,8 +12,9 @@ class QuestionsRepository implements IQuestionsRepository {
     this.ormRepository = getMongoRepository(Question, 'mongo');
   }
 
-  public async findById(id: string): Promise<Question | undefined> {
+  public async findById(id: string): Promise<Question[] | undefined> {
     const findQuestion = await this.ormRepository.findOne(id);
+    
     return findQuestion;
   }
 
@@ -33,6 +35,20 @@ class QuestionsRepository implements IQuestionsRepository {
 
   public async save(question: Question): Promise<Question> {
     return this.ormRepository.save(question);
+  }
+
+  public async findRandomQuestionsByCount(
+    questionsCount: number
+  ): Promise<Question[]> {
+    const countQuestionsInDB = await this.ormRepository.count();
+
+    const offset = Math.floor(Math.random() * (countQuestionsInDB - questionsCount));
+
+    const findQuestions = await this.ormRepository.find({
+      skip: offset,
+      take: questionsCount
+    });
+    return findQuestions;
   }
 }
 

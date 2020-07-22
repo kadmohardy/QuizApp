@@ -6,6 +6,6 @@ import MocksController from '../controllers/MocksController';
 const mocksRouter = Router();
 const mocksController = new MocksController();
 
-mocksRouter.post('/', ensureAuthenticated, mocksController.create);
+mocksRouter.get('/:count', mocksController.show);
 
 export default mocksRouter;

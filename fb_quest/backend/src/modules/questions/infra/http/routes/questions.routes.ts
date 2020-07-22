@@ -7,5 +7,6 @@ const questionsRouter = Router();
 const questionsController = new QuestionsController();
 
 questionsRouter.post('/', ensureAuthenticated, questionsController.create);
+questionsRouter.get('/:id', questionsController.show);
 
 export default questionsRouter;

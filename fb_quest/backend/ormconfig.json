@@ -16,12 +16,11 @@
   {
     "name": "mongo",
     "type": "mongodb",
-    "host": "ds263448.mlab.com",
-    "port": 63448,
-    "database": "fbquest",
-    "username": "admin",
-    "password": "admin123",
-    "useUnifiedTopology": "true",
+    "url": "mongodb+srv://admin:admin1234@cluster0.bl7v1.mongodb.net/fbquestdb",
+    "useNewUrlParser": true,
+    "synchronize": true,
+    "logging": true,
+    "useUnifiedTopology": true,
     "entities": ["./src/modules/**/infra/typeorm/schemas/*.ts"]
   }
 ]

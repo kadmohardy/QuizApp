@@ -7,7 +7,6 @@ export default interface ICreateQuestionDTO {
   enunciado: string;
   numeroQuestao: number;
   ano: number;
-  alternativas: Array<ICreateQuestionOptionDTO>;
-
+  alternativas: ICreateQuestionOptionDTO[];
   disponivel: boolean;
 }
