@@ -4,9 +4,9 @@
     "type": "postgres",
     "host": "ruby.db.elephantsql.com",
     "port": 5432,
-    "database": "pfwiwuyh",
-    "username": "pfwiwuyh",
-    "password": "CmtCXPYr_AxLyDv79xHsO9P8YXgzNd17",
+    "database": "ckzlcfhr",
+    "username": "ckzlcfhr",
+    "password": "AhpjYQuWpqAddIsu-CHk7BC6tBzjrxv8",
     "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
     "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
     "cli": {

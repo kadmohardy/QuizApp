@@ -9,6 +9,7 @@ export default class UsersController {
 
     const createUser = container.resolve(CreateUserService);
 
+    console.log('TESTANDO CRIACAO DE USER');
     const user = await createUser.execute({
       name,
       birthdate,

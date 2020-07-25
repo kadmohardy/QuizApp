@@ -21,16 +21,10 @@ class User {
   email: string;
 
   @Column()
-  birthdate: Date;
-
-  @Column()
   password: string;
 
   @Column()
   provider: boolean;
-
-  @Column()
-  avatar: string;
 
   @CreateDateColumn()
   created_at: Date;

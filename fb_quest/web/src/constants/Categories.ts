@@ -1,0 +1,15 @@
+export const FoodCategories = [
+  { label: 'Nenhuma', value: 0 },
+  { label: 'Carnes', value: 1 },
+  { label: 'Massas', value: 2 },
+  { label: 'Lanches', value: 3 },
+  { label: 'Hamburguers', value: 4 },
+  { label: 'Pizzas', value: 5 },
+  { label: 'Sopas', value: 6 },
+  { label: 'Refrigerantes', value: 7 },
+  { label: 'Sucos', value: 8 },
+  { label: 'Bebidas', value: 9 },
+  { label: 'Sorvetes', value: 10 },
+  { label: 'Bolos', value: 11 },
+  { label: 'Doces', value: 11 },
+];

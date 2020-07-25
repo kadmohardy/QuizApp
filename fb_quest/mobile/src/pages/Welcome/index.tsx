@@ -1,7 +1,6 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-MaterialCommunityIcon.loadFont();
 import {
   Container,
   Logo,
@@ -27,17 +26,15 @@ const Welcome: React.FC = () => {
           <LogoText>FBQuest</LogoText>
         </Logo>
         <WelcomeText>Enem é no FB</WelcomeText>
-        
-        <Button onPress={() => navigation.navigate('SignIn')}
-          backgroundColor="#1E66AB"
-        >
+
+        <Button
+          onPress={() => navigation.navigate('SignIn')}
+          backgroundColor="#1E66AB">
           <ButtonText>Entrar</ButtonText>
         </Button>
-        <Button
-          onPress={() => navigation.navigate('SignUp')}>
+        <Button onPress={() => navigation.navigate('SignUp')}>
           <ButtonText color="#1E66AB">Criar uma conta</ButtonText>
         </Button>
-       
       </FormContainer>
     </Container>
   );

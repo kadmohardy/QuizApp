@@ -2,9 +2,7 @@ import React, {useState, useRef} from 'react';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-MaterialCommunityIcon.loadFont();
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
-IconAntDesign.loadFont();
 
 import {
   Container,
@@ -95,8 +93,6 @@ const SignIn: React.FC = () => {
             <SubmitButtonText>Entrar</SubmitButtonText>
           </SubmitButton>
           <GeneralText>ou, entre usando</GeneralText>
-
-   
         </Form>
       </FormContainer>
     </Container>

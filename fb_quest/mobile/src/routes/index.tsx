@@ -9,9 +9,8 @@ const Routes = () => {
 
   const signed = useSelector((state) => state.auth.signed);
   console.tron.log(state);
-  ///return signed ? <AppRoutes /> : <AuthRoutes />;
+  //return signed ? <AppRoutes /> : <AuthRoutes />;
   return <AppRoutes />;
-
 };
 
 export default Routes;

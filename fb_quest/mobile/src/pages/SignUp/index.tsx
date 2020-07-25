@@ -4,13 +4,9 @@ import {TextInputMask} from 'react-native-masked-text';
 import {useNavigation} from '@react-navigation/native';
 
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
-IconAwesome.loadFont();
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
-IconAntDesign.loadFont();
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-MaterialIcon.loadFont();
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-MaterialCommunityIcon.loadFont();
 
 import {signUpRequest} from '../../store/modules/auth/actions';
 import {
