@@ -2,6 +2,8 @@ import { getMongoRepository, MongoRepository } from 'typeorm';
 
 import IQuestionsRepository from '@modules/questions/repositories/IQuestionsRepository';
 import ICreateQuestionDTO from '@modules/questions/dtos/ICreateQuestionDTO';
+import IUpdateQuestionDTO from '@modules/questions/dtos/IUpdateQuestionDTO';
+
 import Question from '../schemas/Question';
 
 class QuestionsRepository implements IQuestionsRepository {
@@ -11,7 +13,7 @@ class QuestionsRepository implements IQuestionsRepository {
     this.ormRepository = getMongoRepository(Question, 'mongo');
   }
 
-  public async findById(id: string): Promise<Question[] | undefined> {
+  public async findById(id: string): Promise<Question | undefined> {
     const findQuestion = await this.ormRepository.findOne(id);
 
     return findQuestion;
@@ -32,6 +34,25 @@ class QuestionsRepository implements IQuestionsRepository {
     return question;
   }
 
+  public async update(
+    id: string,
+    data: IUpdateQuestionDTO
+  ): Promise<Question | undefined> {
+    const oldQuestion = await this.ormRepository.findOne(id);
+
+    if (oldQuestion) {
+      oldQuestion.enunciado = data.enunciado;
+      oldQuestion.alternativas = data.alternativas;
+      oldQuestion.disponivel = data.disponivel;
+
+      const newQuestion = await this.ormRepository.save(oldQuestion);
+
+      return newQuestion;
+    }
+
+    return oldQuestion;
+  }
+
   public async save(question: Question): Promise<Question> {
     return this.ormRepository.save(question);
   }
@@ -49,6 +70,16 @@ class QuestionsRepository implements IQuestionsRepository {
       skip: offset,
       take: questionsCount,
     });
+    return findQuestions;
+  }
+
+  public async findList(page: number): Promise<Question[]> {
+    const findQuestions = await this.ormRepository.find({
+      skip: (page - 1) * 10,
+      take: 10,
+      order: { numeroQuestao: 'ASC' },
+    });
+
     return findQuestions;
   }
 }

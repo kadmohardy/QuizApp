@@ -2,29 +2,17 @@ import { Request, Response } from 'express';
 
 import { container } from 'tsyringe';
 import GetQuestionService from '@modules/questions/services/GetQuestionService';
+import UpdateQuestionService from '@modules/questions/services/UpdateQuestionService';
 
 export default class QuestionsController {
-  public async create(request: Request, response: Response): Promise<Response> {
-    const {
-      materia,
-      vestibular,
-      resolucao,
-      enunciado,
-      numeroQuestao,
-      ano,
-      alternativas,
-      disponivel,
-    } = request.body;
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { enunciado, alternativas, disponivel } = request.body;
+    const { questionId } = request.params;
 
-    const createQuestion = container.resolve(CreateQuestionService);
+    const updateQuestion = container.resolve(UpdateQuestionService);
 
-    const question = await createQuestion.execute({
-      materia,
-      vestibular,
-      resolucao,
+    const question = await updateQuestion.execute(questionId, {
       enunciado,
-      numeroQuestao,
-      ano,
       alternativas,
       disponivel,
     });
@@ -38,7 +26,6 @@ export default class QuestionsController {
     const getQuestion = container.resolve(GetQuestionService);
 
     const question = await getQuestion.execute({ id });
-
 
     return response.json(question);
   }

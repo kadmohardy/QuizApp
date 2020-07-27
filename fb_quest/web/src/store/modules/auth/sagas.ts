@@ -11,7 +11,6 @@ import {
 
 export function* signIn(action: SignInRequestActionType) {
   try {
-    console.log('TESTANDO LOGIN');
     const { email, password } = action.payload;
 
     const response = yield call(api.post, '/sessions', { email, password });
@@ -20,12 +19,10 @@ export function* signIn(action: SignInRequestActionType) {
     const { user, token } = response.data;
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
-    yield delay(3000);
+    //yield delay(3000);
 
     yield put(signInSuccess(token, user));
   } catch (error) {
-    console.log('ERROR, ', error);
-
     yield put(signFailure());
   }
 }

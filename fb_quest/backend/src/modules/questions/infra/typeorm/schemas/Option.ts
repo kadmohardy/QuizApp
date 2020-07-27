@@ -1,9 +1,9 @@
 import { ObjectID, Entity, Column, ObjectIdColumn } from 'typeorm';
 
-@Entity('options')
+// @Entity('options')
 class Option {
-  @ObjectIdColumn()
-  id: ObjectID;
+  // @ObjectIdColumn()
+  // id: ObjectID;
 
   @Column()
   letra: string;

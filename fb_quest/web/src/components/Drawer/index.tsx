@@ -27,9 +27,10 @@ import {
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import MenuIcon from '@material-ui/icons/Menu';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import RootState from '../../store/modules/rootState';
+import { ProfileState } from '../../store/modules/user/types';
+
 import {
   Profile,
   TopToolbar,
@@ -37,7 +38,7 @@ import {
   StatusContainer,
   StatusButton,
 } from './styles';
-import wailterIcon from '../../assets/logo/logo.png';
+import logo from '../../assets/logo/logo.png';
 
 import { signOut } from '../../store/modules/auth/actions';
 
@@ -112,7 +113,7 @@ const menuItems = [
 const icons = [<AiOutlineSetting size={24} />, <AiOutlineLogout size={24} />];
 
 const MiniDrawer: React.FC = ({ children }) => {
-  const signed = useSelector<RootState>((state) => state.auth.signed);
+  const profile = useSelector((state: RootState) => state.user.profile);
   const classes = useStyles();
   const theme = useTheme();
   const history = useHistory();
@@ -133,8 +134,6 @@ const MiniDrawer: React.FC = ({ children }) => {
   };
 
   const handleSuperiorButtonClick = useCallback((buttonId: number) => {
-    console.log(buttonId);
-
     switch (buttonId) {
       case 0:
         history.push('/dashboard');
@@ -184,20 +183,13 @@ const MiniDrawer: React.FC = ({ children }) => {
             })}
           >
             {/* <MenuIcon /> */}
-            <img src={wailterIcon} width={36} alt="Waiters" />
+            <img src={logo} width={72} alt="FBQuest" />
           </IconButton>
           <Profile>
             <div>
-              <strong>ParkChopp</strong>
+              <strong>{profile.name}</strong>
               <Link to="/profile">Meu Perfil</Link>
             </div>
-            <button
-              onClick={() => {
-                history.push('/orders');
-              }}
-            >
-              <AiFillBook size={36} color="#ffffff" />
-            </button>
           </Profile>
         </TopToolbar>
       </TopBar>

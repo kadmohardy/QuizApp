@@ -1,5 +1,4 @@
 export interface User {
-  cpf: string;
   name: string;
   birthdate: Date;
   gender: string;
@@ -9,7 +8,6 @@ export interface User {
 }
 
 export interface ProfileState {
-  cpf: string | null;
   name: string | null;
   birthdate: Date | null;
   gender: string | null;

@@ -21,8 +21,6 @@ import {
   Content,
   Title,
   AdminData,
-  BusinessData,
-  BusinessDataContent,
   DataContainer,
 } from './styles';
 import Input from '../../components/Input';
@@ -77,10 +75,7 @@ const Profile: React.FC = () => {
             <Form
               initialData={{
                 name: userData.name,
-                cpf: userData.cpf,
-                birthdate: userData.birthdate,
-                userEmail: userData.email,
-                userPhone: userData.phone,
+                email: userData.email,
               }}
               ref={formRef}
               onSubmit={handleSubmit}
@@ -91,26 +86,9 @@ const Profile: React.FC = () => {
                 type="text"
                 placeholder="Nome"
               />
+
               <Input
-                name="cpf"
-                icon={AiOutlineInfoCircle}
-                type="text"
-                placeholder="CPF"
-              />
-              <Input
-                name="birthdate"
-                icon={MdChildCare}
-                type="text"
-                placeholder="Data de nascimento"
-              />
-              <Input
-                name="userPhone"
-                icon={AiOutlinePhone}
-                type="text"
-                placeholder="Telefone"
-              />
-              <Input
-                name="userEmail"
+                name="email"
                 icon={AiOutlineMail}
                 type="text"
                 placeholder="Email"

@@ -1,4 +1,4 @@
-import ICreateQuestionOptionDTO from './ICreateQuestionOptionDTO';
+import IQuestionOptionDTO from './IQuestionOptionDTO';
 
 export default interface ICreateQuestionDTO {
   materia: string;
@@ -7,6 +7,6 @@ export default interface ICreateQuestionDTO {
   enunciado: string;
   numeroQuestao: number;
   ano: number;
-  alternativas: ICreateQuestionOptionDTO[];
+  alternativas: IQuestionOptionDTO[];
   disponivel: boolean;
 }

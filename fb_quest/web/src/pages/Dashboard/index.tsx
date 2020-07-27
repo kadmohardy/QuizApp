@@ -1,34 +1,96 @@
-import React, { useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+import { FaEdit } from 'react-icons/fa';
 
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { FaStar, FaBookmark } from 'react-icons/fa';
-import {
-  Container,
-  Header,
-  LastDayInformationItems,
-  ExpansionPanelDetails,
-  OrdersNumber,
-  ListItems,
-  EvaluationsList,
-  NavigationButtons,
-} from './styles';
-import {
-  AiOutlineDashboard,
-  AiOutlineClose,
-  AiOutlineTag,
-  AiOutlineLeft,
-  AiOutlineRight,
-} from 'react-icons/ai';
+import { Container, Header, EditButton } from './styles';
+import { AiOutlineDashboard } from 'react-icons/ai';
 
-import { MdChildCare } from 'react-icons/md';
+import api from '../../services/api';
+import { IQuestion } from '../../interfaces/Questions';
+import QuestionModal from '../../components/QuestionModal';
 
-import DashboardItemCard from './../../components/DashboardItemCard';
-import EvaluationCard from './../../components/EvaluationCard';
+interface QuestionColumn {
+  id: string;
+  label: string;
+  minWidth: number;
+  align: string;
+}
+
+const columns: QuestionColumn[] = [
+  { id: 'numeroQuestao', label: 'N Questão', minWidth: 170, align: 'center' },
+  { id: 'materia', label: 'Matéria', minWidth: 100, align: 'center' },
+  {
+    id: 'vestibular',
+    label: 'Vestibular',
+    minWidth: 170,
+    align: 'right',
+  },
+  {
+    id: 'ano',
+    label: 'Ano',
+    minWidth: 170,
+    align: 'right',
+  },
+];
+
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    height: '100%',
+  },
+  container: {
+    maxHeight: 840,
+  },
+});
 
 const Dashboard: React.FC = () => {
-  // const [expanded, setExpanded] = React.useState('panel1');
+  const classes = useStyles();
+  const [loadEditModal, setLoadEditModal] = useState(false);
+  const [nextPageButton, setNextPageButton] = useState(true);
+  const [backPageButton, setBackPageButton] = useState(true);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [currentQuestion, setCurrentQuestion] = useState<IQuestion | undefined>(
+    undefined,
+  );
+  const [questionsList, setQuestionsList] = useState<IQuestion[]>([]);
+
+  useEffect(() => {
+    async function loadQuestionsList() {
+      const response = await api.get('questions/list/1');
+      setQuestionsList(response.data);
+    }
+    loadQuestionsList();
+  }, []);
+
+  const loadQuestionEditModal = (question: IQuestion) => {
+    setCurrentQuestion(question);
+    console.log(currentQuestion);
+    setLoadEditModal(true);
+  };
+
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
+    newPage: number,
+  ) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  ) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   return (
     <Container>
@@ -36,88 +98,77 @@ const Dashboard: React.FC = () => {
         <AiOutlineDashboard size={18} />
         <span>Dashboard</span>
       </Header>
-      <LastDayInformationItems>
-        <ListItems>
-          <DashboardItemCard
-            title="Pedidos recebidos"
-            icon={<FaBookmark size={48} color="#d84e55" />}
-            value="12"
-            footer="pedidos recebidos"
-          />
-          <DashboardItemCard
-            title="Pedidos cancelados"
-            icon={<AiOutlineClose size={48} color="#d84e55" />}
-            value="12"
-            footer="pedidos cancelados"
-          />
-          <DashboardItemCard
-            title="Ticket médio"
-            icon={<AiOutlineTag size={48} color="#d84e55" />}
-            value="R$42,50"
-            footer="ticket médio"
-          />
-        </ListItems>
-      </LastDayInformationItems>
-      <LastDayInformationItems>
-        <ListItems>
-          <DashboardItemCard
-            title="Avaliação média"
-            icon={<FaStar size={48} color="#d84e55" />}
-            value="12"
-            footer="pedidos recebidos"
-          />
-          <DashboardItemCard
-            title="Como está a comida?"
-            icon={<FaStar size={48} color="#d84e55" />}
-            value="12"
-            footer="pedidos cancelados"
-          />
-          <DashboardItemCard
-            title="Tempo de entrega"
-            icon={<FaStar size={48} color="#d84e55" />}
-            value="R$42,50"
-            footer="ticket médio"
-          />
-          <DashboardItemCard
-            title="Pedidos com erros"
-            icon={<FaStar size={48} color="#d84e55" />}
-            value="R$42,50"
-            footer="ticket médio"
-          />
-        </ListItems>
-      </LastDayInformationItems>
-      <EvaluationsList>
-        <h3>Ultimas avalições</h3>
-        {/* <ListItems>
-          <EvaluationCard
-            user="Gusttavo"
-            food="Camarão internacional"
-            comment="Muito bom"
-            avatar={gusttavo}
-          />
-          <EvaluationCard
-            user="Xand"
-            food="Camarão na moranga"
-            comment="Excelente"
-            avatar={xand}
-          />
-          <EvaluationCard
-            user="Marilia"
-            food="Pizza"
-            comment="Pizza muito boa"
-            avatar={marilia}
-          />
-        </ListItems> */}
 
-        <NavigationButtons>
-          <button>
-            <AiOutlineLeft size={24} />
-          </button>
-          <button>
-            <AiOutlineRight size={24} />
-          </button>
-        </NavigationButtons>
-      </EvaluationsList>
+      <Paper className={classes.root}>
+        <TableContainer className={classes.container}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    //align={column.align}
+                    //style={{ minWidth: column.minWidth }}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {questionsList != null &&
+                questionsList.map((question) => {
+                  return (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={question.numeroQuestao}
+                    >
+                      {columns.map((column) => {
+                        return (
+                          <TableCell key={column.id}>
+                            {question[column.id]}
+                          </TableCell>
+                        );
+                      })}
+                      <TableCell key={question.id}>
+                        <EditButton
+                          onClick={() => loadQuestionEditModal(question)}
+                        >
+                          <FaEdit size={24} color="#4267B2" />
+                        </EditButton>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10]}
+          component="div"
+          count={questionsList.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+          labelRowsPerPage="questões por página"
+          nextIconButtonProps={{
+            disabled: nextPageButton,
+          }}
+          backIconButtonProps={{
+            disabled: backPageButton,
+          }}
+        />
+      </Paper>
+      {currentQuestion !== undefined && loadEditModal && (
+        <QuestionModal
+          question={currentQuestion}
+          isOpen={loadEditModal}
+          close={() => setLoadEditModal(false)}
+        />
+      )}
     </Container>
   );
 };

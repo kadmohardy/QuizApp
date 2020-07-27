@@ -18,7 +18,7 @@ export const Container = styledComponent.div`
 export const Header = styledComponent.div`
   display: flex;
   flex-direction: row;
-
+  margin-bottom: 25px;
   span {
     margin-left: 5px;
     font-size: 14px;
@@ -52,7 +52,7 @@ export const ListItems = styled(GridList)({
   padding: '0 30px',
 });
 
-export const LastDayInformationItems = styledComponent.div`
+export const QuestionsTable = styledComponent.div`
   display: flex;
   flew-grow: 1;
   flex-wrap: wrap;
@@ -73,10 +73,15 @@ export const EvaluationsList = styledComponent.div`
   }
 `;
 
-export const NavigationButtons = styledComponent.div`  
+export const NavigationButtons = styledComponent.div`
   button {
     margin: 5px;
     background: transparent;
     border: 0;
   }
+`;
+
+export const EditButton = styledComponent.button`
+  background: transparent;
+  border: none;
 `;
