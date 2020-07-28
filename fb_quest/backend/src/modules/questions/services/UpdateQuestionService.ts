@@ -5,13 +5,7 @@ import IQuestionsRepository from '../repositories/IQuestionsRepository';
 
 interface IRequest {
   enunciado: string;
-  alternativas: [
-    {
-      letra: string;
-      correta: boolean;
-      texto: string;
-    }
-  ];
+  resolucao: string;
   disponivel: boolean;
 }
 
@@ -24,11 +18,11 @@ class UpdateQuestionService {
 
   public async execute(
     id: string,
-    { enunciado, alternativas, disponivel }: IRequest
-  ): Promise<Question> {
+    { enunciado, resolucao, disponivel }: IRequest
+  ): Promise<Question | undefined> {
     const question = this.QuestionsRepository.update(id, {
       enunciado,
-      alternativas,
+      resolucao,
       disponivel,
     });
 

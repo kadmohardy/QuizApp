@@ -41,12 +41,13 @@ class QuestionsRepository implements IQuestionsRepository {
     const oldQuestion = await this.ormRepository.findOne(id);
 
     if (oldQuestion) {
+      console.log(data);
       oldQuestion.enunciado = data.enunciado;
-      oldQuestion.alternativas = data.alternativas;
+      oldQuestion.resolucao = data.resolucao;
       oldQuestion.disponivel = data.disponivel;
 
       const newQuestion = await this.ormRepository.save(oldQuestion);
-
+      console.log(newQuestion);
       return newQuestion;
     }
 

@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { Container, QuestionContainer } from './styles';
+import Checkbox from '@material-ui/core/Checkbox';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
+import {
+  Container,
+  QuestionContainer,
+  QuestionTopBarContainer,
+  QuestionBottomBarContainer,
+} from './styles';
 import { IQuestion } from '../../interfaces/Questions';
 import { Editor, EditorState, RichUtils, ContentState } from 'draft-js';
-// import { Editor } from 'react-draft-wysiwyg';
+import api from '../../services/api';
 import 'draft-js/dist/Draft.css';
 import './editor.css';
 
@@ -34,6 +41,7 @@ const QuestionModal: React.FC<QuestionModalProps> = ({
   close,
 }) => {
   const styles = useStyles();
+  const [checked, setChecked] = useState(question.disponivel);
 
   const [open, setOpen] = useState(false);
   const [editorDescriptionState, setEditorDescriptionState] = useState(() =>
@@ -49,17 +57,19 @@ const QuestionModal: React.FC<QuestionModalProps> = ({
   );
 
   const handleClose = () => {
-    //setOpen(false);
+    close();
   };
 
-  // const handleKeyCommand = (command) => {
-  //   const newState = RichUtils.handleKeyCommand(editorState, command);
-  //   if (newState) {
-  //     setEditorState(newState);
-  //     return 'handled';
-  //   }
-  //   return 'not-handled';
-  // };
+  const handleSave = async () => {
+    const response = await api.patch(`questions/${question.id}`, {
+      enunciado: editorDescriptionState
+        .getCurrentContent()
+        .getPlainText('\u0001'),
+      resolucao: editorAnswerState.getCurrentContent().getPlainText('\u0001'),
+      disponivel: checked,
+    });
+    close();
+  };
 
   return (
     <Container>
@@ -71,6 +81,12 @@ const QuestionModal: React.FC<QuestionModalProps> = ({
         className={styles.modal}
       >
         <QuestionContainer>
+          <QuestionTopBarContainer>
+            <h3>Editar questão</h3>
+            <button onClick={handleClose}>
+              <AiOutlineCloseCircle size={24} />
+            </button>
+          </QuestionTopBarContainer>
           <h4>Questão</h4>
           <Editor
             editorState={editorDescriptionState}
@@ -82,6 +98,15 @@ const QuestionModal: React.FC<QuestionModalProps> = ({
             onChange={setEditorAnswerState}
           />
           {/* <h4>{question.enunciado}</h4> */}
+          <QuestionBottomBarContainer>
+            <Checkbox
+              checked={checked}
+              onChange={() => setChecked(!checked)}
+              inputProps={{ 'aria-label': 'primary checkbox' }}
+            />
+            <span>disponível</span>
+            <button onClick={handleSave}>Salvar</button>
+          </QuestionBottomBarContainer>
         </QuestionContainer>
       </Modal>
     </Container>

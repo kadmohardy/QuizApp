@@ -21,7 +21,7 @@ export const Container = styled.div`
 export const QuestionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 600px;
+  height: 720px;
   width: 720px;
   background: #ffffff;
   text-align: center;
@@ -43,24 +43,49 @@ export const QuestionContainer = styled.div`
 
 export const QuestionTopBarContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  height: 600px;
-  width: 720px;
-  background: #ffffff;
-  text-align: center;
+  flex-direction: row;
+  background: transparent;
+  width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+
   border-radius: 4px;
+
+  h3 {
+    font-size: 18px;
+    margin-left: 25px;
+  }
+
+  button {
+    margin-top: -25px;
+    margin-right: 25px;
+    border: none;
+    background: transparent;
+  }
 `;
 
 export const QuestionBottomBarContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  height: 600px;
-  width: 720px;
+  flex-direction: row;
+
   background: #ffffff;
   text-align: center;
   align-items: center;
   justify-content: center;
   border-radius: 4px;
+  margin-top: 15px;
+
+  button {
+    padding: 10px;
+    margin-right: 25px;
+    background: #1e66ab;
+    color: #ffffff;
+    border-radius: 4px;
+    border: none;
+    margin-left: 50px;
+  }
+
+  span {
+    margin-left: -5px;
+  }
 `;

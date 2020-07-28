@@ -64,11 +64,13 @@ const Dashboard: React.FC = () => {
   );
   const [questionsList, setQuestionsList] = useState<IQuestion[]>([]);
 
+  async function loadQuestionsList() {
+    const response = await api.get(`questions/list/${page + 1}`);
+
+    setQuestionsList(response.data);
+  }
+
   useEffect(() => {
-    async function loadQuestionsList() {
-      const response = await api.get('questions/list/1');
-      setQuestionsList(response.data);
-    }
     loadQuestionsList();
   }, []);
 
@@ -76,6 +78,10 @@ const Dashboard: React.FC = () => {
     setCurrentQuestion(question);
     console.log(currentQuestion);
     setLoadEditModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setLoadEditModal(false);
   };
 
   const handleChangePage = (
@@ -166,7 +172,7 @@ const Dashboard: React.FC = () => {
         <QuestionModal
           question={currentQuestion}
           isOpen={loadEditModal}
-          close={() => setLoadEditModal(false)}
+          close={handleCloseModal}
         />
       )}
     </Container>
