@@ -6,8 +6,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../pages/Home';
-import Configs from '../pages/Configs';
-import Mocks from '../pages/Mocks';
+import Dashboard from '../pages/Dashboard';
+import Report from '../pages/Report';
 import Question from '../pages/Question';
 import Options from '../pages/Options';
 import Profile from '../pages/Profile';
@@ -40,6 +40,7 @@ const HomeRoutes = () => (
     />
     <HomeContext.Screen name="Question" component={Question} />
     <HomeContext.Screen name="Options" component={Options} />
+    <HomeContext.Screen name="Report" component={Report} />
   </HomeContext.Navigator>
 );
 
@@ -76,7 +77,7 @@ const AppRoutes = () => (
         if (route.name === 'HomeRoutes') {
           iconName = 'home';
         }
-        if (route.name === 'Mocks') {
+        if (route.name === 'Dashboard') {
           iconName = 'dashboard';
         }
         if (route.name === 'ProfileRoutes') {
@@ -96,8 +97,8 @@ const AppRoutes = () => (
       },
     }}>
     <App.Screen
-      name="Mocks"
-      component={Mocks}
+      name="Dashboard"
+      component={Dashboard}
       options={{tabBarLabel: 'Avaliações'}}
     />
     <App.Screen

@@ -24,6 +24,7 @@ const PickerModal: React.FC<ActionModalProps> = ({
   title,
   value,
   closeModal,
+  changeValue,
 }) => {
   const [selectedValue, setSelectedValue] = useState(value);
 
@@ -76,12 +77,12 @@ const PickerModal: React.FC<ActionModalProps> = ({
           })}
         </QuestionsNumberPicker>
         <ButtonsView>
-          <LabelButton onPress={() => closeModal(selectedValue)}>
+          <LabelButton onPress={() => closeModal()}>
             <LabelButtonText color="#262626" opacity="0.4">
               CANCELAR
             </LabelButtonText>
           </LabelButton>
-          <LabelButton onPress={() => closeModal(selectedValue)}>
+          <LabelButton onPress={() => changeValue(selectedValue)}>
             <LabelButtonText color="#2f94d9" opacity="0.7">
               SELECIONAR
             </LabelButtonText>

@@ -15,34 +15,48 @@ export const Container = styled.KeyboardAvoidingView.attrs({
   margin-top: 25px;
 `;
 
-export const WelcomeText = styled.Text`
+export const WelcomeLabel = styled.Text`
+  font-size: 24px;
+  width: 200px;
   color: #262626;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: bold;
 `;
-
-export const QuestionText = styled.Text`
+export const GeneralLabel = styled.Text`
+  font-size: 14px;
   color: #262626;
+  opacity: 0.7;
+  font-weight: 300;
+`;
+export const ScoresLabel = styled.Text`
+  font-size: 24px;
+  color: #42cc71;
+  opacity: 0.7;
+  font-weight: bold;
 `;
 
 export const Button = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
-  background-color: #42cc71;
+  background-color: transparent;
   border-radius: 20px;
 
+  border-width: 2px;
+  border-color: #42cc71;
   margin-top: 25px;
   height: 40px;
   width: 300px;
 `;
 
-export const ButtonText = styled.Text`
+export const ButtonLabel = styled.Text`
   font-size: 14px;
-  color: #ffffff;
+  color: #262626;
+  opacity: 0.7;
   font-weight: 600;
-  text-transform: uppercase;
 `;
 
-export const QuestionsNumberPicker = styled.Picker``;
+export const ScoresContainer = styled.View`
+  flex-direction: column;
+  width: 200px;
+`;
 
-export const PickButton = styled(RectButton)``;
+export const Icon = styled.Image``;

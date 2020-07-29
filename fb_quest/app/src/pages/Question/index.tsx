@@ -24,6 +24,8 @@ import HTMLView from 'react-native-htmlview';
 import RootState from '../../store/modules/rootState';
 import {QuestionState} from '../../store/modules/mock/types';
 import {finishMock} from '../../store/modules/mock/actions';
+import ActionModal from '../../components/ActionModal';
+
 import {current} from 'immer';
 
 const styles = StyleSheet.create({
@@ -42,6 +44,7 @@ const Question: React.FC = () => {
   const questions = useSelector((state: RootState) => state.mock.questions);
   const questionsCount: number = questions ? questions?.length : 0;
   const [currentQuestionId, setCurrentQuestionId] = useState(1);
+  const [loadActionModal, setLoadActionModal] = useState(false);
 
   const [currentQuestion, setCurrentQuestion] = useState<
     QuestionState | undefined
@@ -60,8 +63,9 @@ const Question: React.FC = () => {
   }
 
   function handleFinish() {
-    console.tron.log('finalizandasduhasudhushduahusd');
     if (questions) dispatch(finishMock(questions));
+    navigation.navigate('Report');
+    setLoadActionModal(false);
   }
 
   React.useLayoutEffect(() => {
@@ -111,10 +115,16 @@ const Question: React.FC = () => {
         )}
 
         {currentQuestionId == questionsCount && (
-          <BottomTabBarButton onPress={handleFinish}>
+          <BottomTabBarButton onPress={() => setLoadActionModal(true)}>
             <TabBarButtonText>Finalizar</TabBarButtonText>
           </BottomTabBarButton>
         )}
+        <ActionModal
+          visible={loadActionModal}
+          title="Deseja finalizar?"
+          action={handleFinish}
+          closeModal={() => setLoadActionModal(false)}
+        />
       </BottomTabBarContainer>
     </Container>
   );

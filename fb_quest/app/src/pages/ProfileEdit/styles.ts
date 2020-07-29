@@ -161,7 +161,7 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
   background-color: #1e66ab;
 
-  border-radius: 4px;
+  border-radius: 24px;
 
   margin-top: 25px;
   height: 40px;
@@ -170,8 +170,8 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   margin-left: 5px;
-  font-size: 16px;
+  font-size: 14px;
   color: #ffffff;
-  font-weight: 100;
+  font-weight: 500;
   text-transform: uppercase;
 `;

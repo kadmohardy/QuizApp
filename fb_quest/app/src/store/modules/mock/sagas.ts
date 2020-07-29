@@ -12,7 +12,7 @@ export function* generateMock(action: GenerateMockRequestActionType) {
   const {questionsCount} = action.payload;
 
   try {
-    const response = yield call(api.get, `/questions/list/${1}`);
+    const response = yield call(api.get, `/mocks/${questionsCount}`);
 
     yield put(generateMockSuccess(response.data));
   } catch (error) {

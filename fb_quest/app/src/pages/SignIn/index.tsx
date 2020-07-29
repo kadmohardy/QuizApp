@@ -83,7 +83,6 @@ const SignIn: React.FC = () => {
             {loading && <ButtonLoading size="small" color="#ffffff" />}
             <SubmitButtonText>Entrar</SubmitButtonText>
           </SubmitButton>
-          <GeneralText>ou, entre usando</GeneralText>
         </Form>
       </FormContainer>
     </Container>

@@ -25,16 +25,20 @@ const Home: React.FC = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const [selectedValue, setSelectedValue] = useState(0);
+  const [questionsCount, setQuestionsCount] = useState(10);
   const [loadPickerModal, setLoadPickerModal] = useState(false);
 
-  function closePickerModal(value: number) {
-    setSelectedValue(value);
+  function closePickerModal() {
+    setLoadPickerModal(false);
+  }
+
+  function handleChangeQuestionsCount(value: number) {
+    setQuestionsCount(value);
     setLoadPickerModal(false);
   }
 
   function handleButtonSubmit(value: number) {
-    dispatch(generateMockRequest(10));
+    dispatch(generateMockRequest(questionsCount));
     navigation.navigate('Question');
   }
 
@@ -47,7 +51,7 @@ const Home: React.FC = () => {
 
       <PickerContainer>
         <PickerContainerLeft>
-          <QuestionsNumber>12</QuestionsNumber>
+          <QuestionsNumber>{questionsCount}</QuestionsNumber>
           <QuestionsLabel>questões</QuestionsLabel>
         </PickerContainerLeft>
         <PickerButton onPress={() => setLoadPickerModal(true)}>
@@ -57,8 +61,9 @@ const Home: React.FC = () => {
       <PickerModal
         visible={loadPickerModal}
         title="Quantidade de questões"
-        value={selectedValue}
+        value={questionsCount}
         closeModal={closePickerModal}
+        changeValue={handleChangeQuestionsCount}
       />
       <Button onPress={handleButtonSubmit}>
         <ButtonText>COMEÇAR</ButtonText>

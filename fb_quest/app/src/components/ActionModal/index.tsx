@@ -13,7 +13,7 @@ import {
 type ActionModalProps = {
   action(): void;
   title: string;
-  question: string;
+
   visible: boolean;
   closeModal(): void;
 };
@@ -21,7 +21,6 @@ type ActionModalProps = {
 const ActionModal: React.FC<ActionModalProps> = ({
   visible,
   title,
-  question,
   closeModal,
   action,
 }) => {
@@ -35,7 +34,7 @@ const ActionModal: React.FC<ActionModalProps> = ({
       swipeDirection={['up', 'left', 'right', 'down']}>
       <Content>
         <Title>{title}</Title>
-        <Question>{question}</Question>
+        {/* <Question>{question}</Question> */}
         <ButtonsView>
           <LabelButton onPress={closeModal}>
             <LabelButtonText color="#262626" opacity="0.4">
