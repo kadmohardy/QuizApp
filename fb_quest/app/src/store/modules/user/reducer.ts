@@ -2,7 +2,6 @@ import produce from 'immer';
 import {IUser} from './../../../interfaces/User';
 import {AuthAction} from '../auth/actions';
 import {UserAction} from './actions';
-import {CheckInAction, CheckInSuccessActionType} from '../checkIn/actions';
 
 type UserState = {
   profile: IUser | null;
@@ -16,7 +15,7 @@ const initialState: UserState = {
 
 export default function user(
   state = initialState,
-  action: AuthAction | UserAction | CheckInAction,
+  action: AuthAction | UserAction,
 ): UserState {
   return produce(state, (draft) => {
     switch (action.type) {
@@ -27,21 +26,6 @@ export default function user(
 
       case '@auth/SIGN_OUT': {
         draft.profile = null;
-        break;
-      }
-
-      case '@user/UPDATE_AVATAR_SUCCESS': {
-        draft.profile = action.payload.user;
-        break;
-      }
-
-      case '@checkIn/CHECK_IN_SUCCESS': {
-        draft.profile = action.payload.user;
-        break;
-      }
-
-      case '@checkIn/CHECK_OUT_SUCCESS': {
-        draft.profile = action.payload.user;
         break;
       }
 

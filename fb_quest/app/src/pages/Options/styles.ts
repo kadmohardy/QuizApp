@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import {RectButton} from 'react-native-gesture-handler';
 import {Platform} from 'react-native';
+import {ScreenWidth} from '../../utils/ScreenHelper';
 
 export const Container = styled.KeyboardAvoidingView.attrs({
   enabled: Platform.OS === 'ios',
@@ -11,9 +12,8 @@ export const Container = styled.KeyboardAvoidingView.attrs({
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background: #ffffff;
   margin-top: 25px;
-  padding: 15px;
+  padding: 5px;
 `;
 
 export const ContainerScrollable = styled.ScrollView.attrs(() => ({
@@ -21,10 +21,10 @@ export const ContainerScrollable = styled.ScrollView.attrs(() => ({
     alignItems: 'flex-start',
   },
 }))`
-  flex-direction: column;
-  padding: 5px;
+  width: ${ScreenWidth}px;
   padding-bottom: 130px;
   margin-top: 25px;
+  padding: 0px 10px;
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -105,7 +105,7 @@ export const BottomTabBarButton = styled.TouchableOpacity`
 
 export const OptionContainer = styled.View`
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin-top: 20px;
 `;
@@ -116,7 +116,7 @@ interface OptionButtonProps {
 
 export const OptionButton = styled.TouchableOpacity`
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 
   border-radius: 4px;
@@ -134,6 +134,7 @@ export const ButtonText = styled.Text`
 `;
 
 export const OptionsContainer = styled.View`
+  width: ${ScreenWidth - 20}px;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -151,7 +152,7 @@ export const OptionLabelContainer = styled.View`
   margin-right: 14px;
 
   border-color: ${(props: OptionButtonProps) =>
-    props.checked ? 'rgba(0, 0, 0, .125)' : 'transparent'};
+    props.checked ? 'rgba(0, 0, 0,1)' : 'transparent'};
   border-width: ${(props: OptionButtonProps) => (props.checked ? 2 : 1)}px;
 `;
 
@@ -173,7 +174,29 @@ export const StatusContainer = styled.View`
   margin-left: -10px;
   margin-top: -10px;
 `;
+
 export const RightContainer = styled.View`
   flex-direction: row;
   align-items: flex-start;
+
+  width: ${ScreenWidth - 80}px;
+`;
+
+interface AnswerStatus {
+  correct: boolean;
+}
+export const AnswerStatus = styled.View`
+  background: ${(props: AnswerStatus) => (props.correct ? '#42cc71' : 'red')};
+  height: 40px;
+  width: ${ScreenWidth}px;
+  margin-top: 25px;
+
+  align-items: center;
+  justify-content: center;
+`;
+
+export const AnswerLabel = styled.Text`
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
 `;

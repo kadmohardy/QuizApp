@@ -7,9 +7,9 @@ import {persistReducer} from 'redux-persist';
 export default (reducers: Reducer) => {
   const persistedReducer = persistReducer(
     {
-      key: 'comeonapp',
+      key: 'fbquestapp',
       storage: AsyncStorage,
-      whitelist: ['auth', 'user'],
+      whitelist: ['auth', 'user', 'mock', 'history'],
     },
     reducers,
   );

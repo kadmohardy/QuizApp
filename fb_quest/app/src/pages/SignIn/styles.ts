@@ -97,7 +97,8 @@ export const BrandsContainer = styled.TouchableOpacity`
 export const SubmitButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
-  background-color: #1E66AB;
+  flex-direction: row;
+  background-color: #1e66ab;
   border-radius: 20px;
 
   margin-top: 25px;
@@ -143,4 +144,8 @@ export const FormItem = styled.View`
   padding: 5px;
   height: 45px;
   width: 320px;
+`;
+
+export const ButtonLoading = styled.ActivityIndicator`
+  margin-right: 10px;
 `;

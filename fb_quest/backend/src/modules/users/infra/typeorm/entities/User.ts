@@ -15,9 +15,6 @@ class User {
   name: string;
 
   @Column()
-  gender: string;
-
-  @Column()
   email: string;
 
   @Column()

@@ -5,6 +5,7 @@ export interface IQuestionOption {
 }
 
 export interface IQuestion {
+  id: string;
   materia: string;
   vestibular: string;
   resolucao: string;

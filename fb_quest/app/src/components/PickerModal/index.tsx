@@ -15,7 +15,8 @@ type ActionModalProps = {
   title: string;
   visible: boolean;
   value: number;
-  closeModal(value: number): void;
+  closeModal(): void;
+  changeValue(value: number): void;
 };
 
 const PickerModal: React.FC<ActionModalProps> = ({
@@ -24,7 +25,30 @@ const PickerModal: React.FC<ActionModalProps> = ({
   value,
   closeModal,
 }) => {
-  const [selectedValue, setSelectedValue] = useState<number>(value);
+  const [selectedValue, setSelectedValue] = useState(value);
+
+  const items = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+  ];
 
   return (
     <Modal
@@ -36,17 +60,21 @@ const PickerModal: React.FC<ActionModalProps> = ({
       <Content>
         <Title>{title}</Title>
 
-        {/* <QuestionsNumberPicker
+        <QuestionsNumberPicker
           selectedValue={selectedValue}
           style={{height: 50, width: 150}}
           onValueChange={(itemValue: number, itemIndex) =>
             setSelectedValue(itemValue)
           }>
-          <QuestionsNumberPicker.Item label="1" value="1" />
-          <QuestionsNumberPicker.Item label="2" value="2" />
-          <QuestionsNumberPicker.Item label="3" value="3" />
-          <QuestionsNumberPicker.Item label="4" value="4" />
-        </QuestionsNumberPicker> */}
+          {items.map((item) => {
+            return (
+              <QuestionsNumberPicker.Item
+                label={item.toString()}
+                value={item}
+              />
+            );
+          })}
+        </QuestionsNumberPicker>
         <ButtonsView>
           <LabelButton onPress={() => closeModal(selectedValue)}>
             <LabelButtonText color="#262626" opacity="0.4">
@@ -55,7 +83,7 @@ const PickerModal: React.FC<ActionModalProps> = ({
           </LabelButton>
           <LabelButton onPress={() => closeModal(selectedValue)}>
             <LabelButtonText color="#2f94d9" opacity="0.7">
-              SIM
+              SELECIONAR
             </LabelButtonText>
           </LabelButton>
         </ButtonsView>

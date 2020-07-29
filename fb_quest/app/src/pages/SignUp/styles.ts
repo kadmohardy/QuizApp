@@ -30,9 +30,10 @@ export const Logo = styled.View`
 `;
 
 export const Button = styled.TouchableOpacity`
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #1E66AB;
+  background-color: #1e66ab;
 
   border-radius: 20px;
 
@@ -208,4 +209,8 @@ export const IconButton = styled.TouchableOpacity`
   width: 42px;
   border-radius: 21px;
   margin: 5px;
+`;
+
+export const ButtonLoading = styled.ActivityIndicator`
+  margin-right: 10px;
 `;

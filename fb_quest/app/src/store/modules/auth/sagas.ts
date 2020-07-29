@@ -15,13 +15,18 @@ export function* signIn(action: SignInRequestActionType) {
 
     const response = yield call(api.post, '/sessions', {email, password});
 
-    const {data, meta} = response.data;
+    const {user, token} = response.data;
 
-    api.defaults.headers.Authorization = `Bearer ${meta.token}`;
-    yield delay(3000);
+    if (user.provider) {
+      return;
+    }
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+    yield delay(1000);
 
-    yield put(signInSuccess(meta.token, data));
+    yield put(signInSuccess(token, user));
   } catch (error) {
+    console.tron.log(error);
+
     Alert.alert('Erro no login', 'Verique seus dados!');
     yield put(signFailure());
   }
@@ -29,16 +34,15 @@ export function* signIn(action: SignInRequestActionType) {
 
 export function* signUp(action: SignUpRequestActionType) {
   try {
-    const {name, birthdate, gender, phone, email, password} = action.payload;
+    const {name, email, password} = action.payload;
 
     yield call(api.post, '/users', {
       name,
-      birthdate,
-      gender,
-      phone,
       email,
       password,
+      provider: false,
     });
+    yield delay(1000);
     Alert.alert('Cadastro ', 'Cadastro realizado com sucesso!');
   } catch (error) {
     Alert.alert('Falha no cadastro', 'Verique seus dados!');

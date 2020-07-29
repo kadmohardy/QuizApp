@@ -3,14 +3,11 @@ import {useSelector} from 'react-redux';
 
 import AuthRoutes from './auth.routes';
 import AppRoutes from './app.routes';
+import RootState from 'src/store/modules/rootState';
 
 const Routes = () => {
-  const state = useSelector((state) => state);
-
-  const signed = useSelector((state) => state.auth.signed);
-  console.tron.log(state);
-  //return signed ? <AppRoutes /> : <AuthRoutes />;
-  return <AppRoutes />;
+  const signed = useSelector((state: RootState) => state.auth.signed);
+  return signed ? <AppRoutes /> : <AuthRoutes />;
 };
 
 export default Routes;

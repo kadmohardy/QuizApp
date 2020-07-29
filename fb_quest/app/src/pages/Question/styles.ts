@@ -49,6 +49,7 @@ export const QuestionNumber = styled.Text`
   color: #262626;
   font-weight: 600;
   text-transform: uppercase;
+  margin-bottom: 10px;
 `;
 
 export const TabBarButton = styled.TouchableOpacity`

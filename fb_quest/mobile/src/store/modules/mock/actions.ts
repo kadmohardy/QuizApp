@@ -14,15 +14,15 @@ export function typedAction(type: string, payload?: any) {
 }
 
 export function generateMockRequest(questionsCounts: number) {
-  return typedAction('@user/MOCK_REQUEST', {data});
+  return typedAction('@user/GENERATE_MOCK_REQUEST', {questionsCounts});
 }
 
-export function generateMockSuccess(questionsCounts: number) {
-  return typedAction('@user/MOCK_REQUEST', {data});
+export function generateMockSuccess(mock: number) {
+  return typedAction('@user/GENERATE_MOCK_SUCCESS', {data});
 }
 
 export function generateMockFailure() {
-  return typedAction('@user/UPDATE_AVATAR_FAILURE');
+  return typedAction('@user/GENERATE_MOCK_FAILURE');
 }
 
 export type MockAction = ReturnType<
@@ -39,13 +39,4 @@ export type GenerateMockSuccessActionType = ReturnType<
 >;
 export type GenerateMockFailureActionType = ReturnType<
   typeof generateMockFailure
->;
-export type UpdateProfileRequestActionType = ReturnType<
-  typeof updateUserProfileRequest
->;
-export type UpdateProfileSuccessActionType = ReturnType<
-  typeof updateUserProfileSuccess
->;
-export type UpdateProfileFailureActionType = ReturnType<
-  typeof updateUserProfileFailure
 >;

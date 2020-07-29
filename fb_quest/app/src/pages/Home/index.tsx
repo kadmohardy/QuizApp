@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import {useNavigation} from '@react-navigation/native';
-
+import {useDispatch} from 'react-redux';
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import IconSimpleLine from 'react-native-vector-icons/SimpleLineIcons';
@@ -11,19 +11,20 @@ import {
   QuestionText,
   Button,
   ButtonText,
-  QuestionsNumberPicker,
   PickerButton,
   PickerContainer,
   PickerContainerLeft,
-  PickerContainerRight,
   QuestionsNumber,
   QuestionsLabel,
 } from './styles';
 
 import PickerModal from '../../components/PickerModal';
+import {generateMockRequest} from '../../store/modules/mock/actions';
 
 const Home: React.FC = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   const [selectedValue, setSelectedValue] = useState(0);
   const [loadPickerModal, setLoadPickerModal] = useState(false);
 
@@ -33,6 +34,7 @@ const Home: React.FC = () => {
   }
 
   function handleButtonSubmit(value: number) {
+    dispatch(generateMockRequest(10));
     navigation.navigate('Question');
   }
 

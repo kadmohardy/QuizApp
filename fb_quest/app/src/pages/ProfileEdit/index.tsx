@@ -17,8 +17,6 @@ import {
   InputContainer,
   InputContainerLeft,
   InputContainerRight,
-  UpdateButtonContainer,
-  UpdateButtonLabel,
   UpdateButtonWarning,
   UpdateButton,
   Label,
@@ -27,6 +25,7 @@ import {
   TabBarButton,
   ButtonText,
 } from './styles';
+import RootState from 'src/store/modules/rootState';
 
 const ProfileEdit: React.FC = () => {
   const navigation = useNavigation();
@@ -34,10 +33,10 @@ const ProfileEdit: React.FC = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  // const profile = useSelector((state) => state.user.profile);
+  const profile = useSelector((state: RootState) => state.user.profile);
 
-  const [name, setName] = useState('Kadmo');
-  const [email, setEmail] = useState('kadmothadeu@gmail.com');
+  const [name, setName] = useState(profile.name);
+  const [email, setEmail] = useState(profile.email);
   const [phone, setPhone] = useState('');
 
   React.useLayoutEffect(() => {
@@ -78,23 +77,7 @@ const ProfileEdit: React.FC = () => {
               <UpdateButtonWarning>Insira o nome completo</UpdateButtonWarning>
             )}
           </EditItem>
-          <EditItem>
-            <Title>Telefone</Title>
-            <Input
-              placeholder="Celular"
-              // onTouchStart={() => setHiddenButton(true)}
-              // onEndEditing={() => setHiddenButton(false)}
-              value={phone}
-              onChangeText={(text) => setPhone(text)}
-              // onChangeText={setBirthdate}
-              // returnKeyType={Platform.OS === 'ios' ? 'done' : 'next'}
-              keyboardType="numeric"
-              maxLength={50}
-            />
-            {!phone && (
-              <UpdateButtonWarning>Insira o celular</UpdateButtonWarning>
-            )}
-          </EditItem>
+
           <EditItem>
             <Title>Email</Title>
             <Input

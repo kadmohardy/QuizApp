@@ -37,6 +37,6 @@ export const LabelButtonText = styled.Text`
   opacity: ${(props) => props.opacity};
 `;
 
-// export const QuestionsNumberPicker = styled.Picker`
-//   margin-bottom: 50px;
-// `;
+export const QuestionsNumberPicker = styled.Picker`
+  margin-bottom: 50px;
+`;

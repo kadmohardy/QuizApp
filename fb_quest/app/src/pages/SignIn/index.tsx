@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
@@ -7,14 +7,9 @@ import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import {
   Container,
   FormContainer,
-  Logo,
-  Image,
   Form,
   Input,
-  BrandsContainer,
-  IconButton,
-  SignLink,
-  SignLinkText,
+  ButtonLoading,
   SubmitButton,
   SubmitButtonText,
   GeneralText,
@@ -23,17 +18,18 @@ import {
   TabBarButton,
 } from './styles';
 
-import logo from '../../assets/logo/logo_double_color_v2.png';
+import logo from '../../assets/logo/logo.png';
 import {signInRequest} from '../../store/modules/auth/actions';
+import RootState from 'src/store/modules/rootState';
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const passwordRef = useRef();
 
-  const [email, setEmail] = useState('kadmothadeu@gmail.com');
-  const [password, setPassword] = useState('napstera');
-  // const loading = useSelector((state) => state.auth.loading);
+  const [email, setEmail] = useState('aluno@gmail.com');
+  const [password, setPassword] = useState('aluno1234');
+  const loading = useSelector((state: RootState) => state.auth.loading);
 
   async function handleSubmit() {
     dispatch(signInRequest(email, password));
@@ -53,10 +49,6 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <FormContainer>
-        {/* <Logo>
-          <Image source={logo} />
-        </Logo> */}
-
         <Form>
           <FormItem>
             <IconAntDesign name="mail" size={24} color="#1E66AB" />
@@ -87,9 +79,8 @@ const SignIn: React.FC = () => {
             />
           </FormItem>
 
-          <SubmitButton
-            // loading={loading}
-            onPress={handleSubmit}>
+          <SubmitButton onPress={handleSubmit}>
+            {loading && <ButtonLoading size="small" color="#ffffff" />}
             <SubmitButtonText>Entrar</SubmitButtonText>
           </SubmitButton>
           <GeneralText>ou, entre usando</GeneralText>

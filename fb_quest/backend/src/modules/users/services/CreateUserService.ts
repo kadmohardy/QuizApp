@@ -7,8 +7,6 @@ import IUserRepository from '../repositories/IUsersRepository';
 
 interface IRequest {
   name: string;
-  birthdate: Date;
-  gender: string;
   email: string;
   password: string;
   provider: boolean;
@@ -22,8 +20,6 @@ class CreateUserService {
 
   public async execute({
     name,
-    birthdate,
-    gender,
     email,
     password,
     provider,
@@ -38,8 +34,6 @@ class CreateUserService {
 
     const user = await this.usersRepository.create({
       name,
-      birthdate,
-      gender,
       email,
       password: hashedPassword,
       provider,

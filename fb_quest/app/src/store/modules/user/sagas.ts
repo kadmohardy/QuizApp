@@ -6,8 +6,6 @@ import {
   updateUserProfileSuccess,
   updateUserProfileFailure,
   UpdateProfileRequestActionType,
-  //updateUserPlaceSuccess,
-  //updateUserPlaceFailure,
 } from './actions';
 
 export function* updateUserProfile(action: UpdateProfileRequestActionType) {
@@ -20,6 +18,7 @@ export function* updateUserProfile(action: UpdateProfileRequestActionType) {
     const response = yield call(api.patch, `/users/${userId}`, request);
 
     const user = response.data;
+    console.tron.log('REQUEST', response);
 
     //yield put(updateUserProfileSuccess(user));
 

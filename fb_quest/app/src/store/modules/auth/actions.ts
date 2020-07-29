@@ -17,19 +17,9 @@ export function signInSuccess(token: string, user: IUser) {
   return typedAction('@auth/SIGN_IN_SUCCESS', {token, user});
 }
 
-export function signUpRequest(
-  name: string,
-  birthdate: Date,
-  gender: string,
-  phone: string,
-  email: string,
-  password: string,
-) {
+export function signUpRequest(name: string, email: string, password: string) {
   return typedAction('@auth/SIGN_UP_REQUEST', {
     name,
-    birthdate,
-    gender,
-    phone,
     email,
     password,
   });
