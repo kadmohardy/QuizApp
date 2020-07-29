@@ -76,7 +76,7 @@ export const TabBarButtonText = styled.Text`
   margin-top: 10px;
 `;
 
-export const Timer = styled.Text`
+export const TimerCounter = styled.Text`
   font-weight: 500;
   font-size: 12px;
   color: #262626;
@@ -102,4 +102,5 @@ export const BottomTabBarCenterButton = styled.TouchableOpacity`
   margin-left: 45px;
   margin-right: 45px;
   align-items: center;
+  justify-content: center;
 `;

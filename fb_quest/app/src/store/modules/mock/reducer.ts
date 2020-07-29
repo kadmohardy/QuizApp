@@ -2,11 +2,13 @@ import produce from 'immer';
 import {MockAction} from './actions';
 import {MockState, QuestionState} from './types';
 import {calculateScores} from '../../../utils/AuxiliarFunctions';
+import {act} from 'react-test-renderer';
 const initialState: MockState = {
   questions: null,
   loading: false,
   finalized: false,
   scores: 0,
+  time: '00:00:00',
 };
 
 export default function user(
@@ -35,6 +37,7 @@ export default function user(
 
         draft.questions = generatedMock;
         draft.loading = false;
+
         break;
       }
 
@@ -87,8 +90,8 @@ export default function user(
           draft.scores = calculateScores(draft.questions);
         }
         draft.finalized = true;
+        draft.time = action.payload.timer;
 
-        console.tron.log(draft);
         break;
       }
       default:

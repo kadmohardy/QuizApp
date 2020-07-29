@@ -5,7 +5,6 @@ import {
   LabelButton,
   LabelButtonText,
   Title,
-  Question,
   Content,
   ButtonsView,
   QuestionsNumberPicker,

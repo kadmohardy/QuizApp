@@ -1,16 +1,16 @@
 import produce from 'immer';
 import {HistoryAction} from './actions';
 import {MockAction} from '../mock/actions';
-import {MockHistoryRegisterState} from './types';
+import {HistoryState} from './types';
 
-const initialState: MockHistoryRegisterState = {
+const initialState: HistoryState = {
   mocks: null,
 };
 
 export default function history(
   state = initialState,
   action: MockAction,
-): MockHistoryRegisterState {
+): HistoryState {
   return produce(state, (draft) => {
     switch (action.type) {
       case '@mock/FINISH_MOCK': {

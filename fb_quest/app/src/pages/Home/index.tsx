@@ -1,9 +1,7 @@
 import React, {useState, useCallback} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
-import IconAwesome from 'react-native-vector-icons/FontAwesome';
+import {useDispatch, useSelector} from 'react-redux';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
-import IconSimpleLine from 'react-native-vector-icons/SimpleLineIcons';
 
 import {
   Container,
@@ -20,11 +18,13 @@ import {
 
 import PickerModal from '../../components/PickerModal';
 import {generateMockRequest} from '../../store/modules/mock/actions';
+import RootState from 'src/store/modules/rootState';
 
 const Home: React.FC = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
+  const questions = useSelector((state: RootState) => state);
+  console.tron.log(questions);
   const [questionsCount, setQuestionsCount] = useState(10);
   const [loadPickerModal, setLoadPickerModal] = useState(false);
 

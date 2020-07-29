@@ -12,4 +12,5 @@ export type MockState = {
   loading: boolean;
   finalized: boolean;
   scores: number;
+  time: string;
 };

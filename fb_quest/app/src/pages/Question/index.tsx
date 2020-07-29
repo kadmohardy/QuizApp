@@ -3,6 +3,7 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import {StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {Stopwatch, Timer} from 'react-native-stopwatch-timer';
 
 import {
   Container,
@@ -13,7 +14,7 @@ import {
   TabBarTitle,
   TabBarButtonText,
   TabBarCenter,
-  Timer,
+  TimerCounter,
   QuestionNumber,
   ContainerScrollable,
   BottomTabBarContainer,
@@ -35,7 +36,21 @@ const styles = StyleSheet.create({
   },
 });
 
+const timerStyles = {
+  container: {
+    backgroundColor: 'transparent',
+    padding: 5,
+    borderRadius: 5,
+  },
+  text: {
+    fontSize: 12,
+    color: '#000',
+    marginLeft: 7,
+  },
+};
+
 const Question: React.FC = () => {
+  let timer: string;
   const route = useRoute();
 
   const navigation = useNavigation();
@@ -45,6 +60,7 @@ const Question: React.FC = () => {
   const questionsCount: number = questions ? questions?.length : 0;
   const [currentQuestionId, setCurrentQuestionId] = useState(1);
   const [loadActionModal, setLoadActionModal] = useState(false);
+  const [startTimer, setStartTimer] = useState(false);
 
   const [currentQuestion, setCurrentQuestion] = useState<
     QuestionState | undefined
@@ -58,14 +74,23 @@ const Question: React.FC = () => {
     setCurrentQuestion(currQuestion);
   }, [currentQuestionId]);
 
+  useEffect(() => {
+    setStartTimer(true);
+  }, []);
+
   function handleClose() {
     navigation.navigate('Home');
   }
 
   function handleFinish() {
-    if (questions) dispatch(finishMock(questions));
+    if (questions) dispatch(finishMock(questions, timer));
     navigation.navigate('Report');
     setLoadActionModal(false);
+    setStartTimer(false);
+  }
+
+  function getFormattedTime(time: string) {
+    timer = time;
   }
 
   React.useLayoutEffect(() => {
@@ -73,7 +98,13 @@ const Question: React.FC = () => {
       headerTitle: () => (
         <TabBarCenter>
           <TabBarTitle>Biologia</TabBarTitle>
-          <Timer>00:04:18</Timer>
+          <Stopwatch
+            laps
+            start={startTimer}
+            reset={false}
+            options={timerStyles}
+            getTime={getFormattedTime}
+          />
         </TabBarCenter>
       ),
       headerLeft: null,

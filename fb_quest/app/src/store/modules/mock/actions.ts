@@ -34,8 +34,8 @@ export function clearMockData() {
   return typedAction('@mock/CLEAR_MOCK_DATA');
 }
 
-export function finishMock(questions: QuestionState[]) {
-  return typedAction('@mock/FINISH_MOCK', {questions});
+export function finishMock(questions: QuestionState[], timer: string) {
+  return typedAction('@mock/FINISH_MOCK', {questions, timer});
 }
 
 export type MockAction = ReturnType<

@@ -54,6 +54,13 @@ export const ButtonLabel = styled.Text`
   font-weight: 600;
 `;
 
+export const Timer = styled.Text`
+  font-size: 14px;
+  color: #262626;
+
+  font-weight: 600;
+`;
+
 export const ScoresContainer = styled.View`
   flex-direction: column;
   width: 200px;

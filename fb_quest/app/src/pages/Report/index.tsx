@@ -14,6 +14,7 @@ import {
   ButtonLabel,
   ScoresContainer,
   Icon,
+  Timer,
 } from './styles';
 
 import clipboard from '../../assets/images/register.png';
@@ -40,6 +41,7 @@ const Report: React.FC = () => {
         <ScoresLabel>{mock.scores}%</ScoresLabel>
         <GeneralLabel>de aproveitamento</GeneralLabel>
       </ScoresContainer>
+      <Timer>Tempo: {mock.time}</Timer>
       <Button onPress={() => navigation.navigate('Home')}>
         <ButtonLabel>Finalizar e voltar para questões</ButtonLabel>
       </Button>
