@@ -7,8 +7,8 @@
     "database": "ckzlcfhr",
     "username": "ckzlcfhr",
     "password": "AhpjYQuWpqAddIsu-CHk7BC6tBzjrxv8",
-    "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
-    "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
+    "entities": ["./src/modules/**/infra/typeorm/entities/*.js"],
+    "migrations": ["./src/shared/infra/typeorm/migrations/*.js"],
     "cli": {
       "migrationsDir": "./src/shared/infra/typeorm/migrations"
     }
