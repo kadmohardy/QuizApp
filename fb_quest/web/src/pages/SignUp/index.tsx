@@ -36,27 +36,30 @@ const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const dispatch = useDispatch();
 
-  const handleSubmit = useCallback(async (data: SignUpFormData) => {
-    try {
-      formRef.current?.setErrors({});
-      const schema = Yup.object().shape({
-        name: Yup.string().required('Nome obrigatório'),
-        email: Yup.string()
-          .required('E-mail obrigatório')
-          .email('Digite um e-mail válido'),
-        password: Yup.string().min(8, 'No mínimo oito digitos'),
-      });
+  const handleSubmit = useCallback(
+    async (data: SignUpFormData) => {
+      try {
+        formRef.current?.setErrors({});
+        const schema = Yup.object().shape({
+          name: Yup.string().required('Nome obrigatório'),
+          email: Yup.string()
+            .required('E-mail obrigatório')
+            .email('Digite um e-mail válido'),
+          password: Yup.string().min(8, 'No mínimo oito digitos'),
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      dispatch(signUpRequest(data.name, data.email, data.password));
-    } catch (error) {
-      const errors = getValidationErrors(error);
-      formRef.current?.setErrors(errors);
-    }
-  }, []);
+        dispatch(signUpRequest(data.name, data.email, data.password));
+      } catch (error) {
+        const errors = getValidationErrors(error);
+        formRef.current?.setErrors(errors);
+      }
+    },
+    [dispatch],
+  );
 
   return (
     <Container>

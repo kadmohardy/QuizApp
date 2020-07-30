@@ -81,7 +81,7 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     loadQuestionsList();
-  }, []);
+  }, [loadQuestionsList]);
 
   const loadQuestionEditModal = (question: IQuestion) => {
     setCurrentQuestion(question);

@@ -109,7 +109,7 @@ const MiniDrawer: React.FC = ({ children }) => {
 
   const handleSignOut = useCallback(() => {
     dispatch(signOut());
-  }, [dispatch, signOut]);
+  }, [dispatch]);
 
   const handleDrawerOpen = () => {
     setOpen(true);

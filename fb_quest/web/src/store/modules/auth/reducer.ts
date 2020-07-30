@@ -1,7 +1,6 @@
 import produce from 'immer';
 
 import { UserAction } from './actions';
-import { Reducer } from 'react';
 
 import { AuthenticationState, AuthenticationTypes } from './types';
 const initialState: AuthenticationState = {

@@ -25,7 +25,6 @@ import { signInRequest } from '../../store/modules/auth/actions';
 import getValidationErrors from '../../utils/getValidationErrors';
 import logo from '../../assets/logo/logo.png';
 
-import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 
 interface SignInFormData {
