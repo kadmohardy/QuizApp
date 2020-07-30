@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "queue": "nodemon src/queue.js",
-    "build": "tsc",
+    "build": "babel src --extensions \".js, .ts\" --out-dir dist --copy-files",
     "start": "node src/shared/infra/http/server.ts",
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore node_modules src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
@@ -40,9 +40,15 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
     "@material-ui/core": "^4.11.0",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@sentry/node": "5.5.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "bcryptjs": "^2.4.3",
     "bee-queue": "^1.2.2",
     "body-parser": "^1.19.0",
