@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 interface QuestionModalProps {
   question: IQuestion;
   close: Function;
+  update: Function;
   isOpen: boolean;
 }
 
@@ -39,6 +40,7 @@ const QuestionModal: React.FC<QuestionModalProps> = ({
   question,
   isOpen,
   close,
+  update,
 }) => {
   const styles = useStyles();
   const [checked, setChecked] = useState(question.disponivel);
@@ -61,14 +63,15 @@ const QuestionModal: React.FC<QuestionModalProps> = ({
   };
 
   const handleSave = async () => {
-    const response = await api.patch(`questions/${question.id}`, {
+    await api.patch(`questions/${question.id}`, {
       enunciado: editorDescriptionState
         .getCurrentContent()
         .getPlainText('\u0001'),
       resolucao: editorAnswerState.getCurrentContent().getPlainText('\u0001'),
       disponivel: checked,
     });
-    close();
+
+    update();
   };
 
   return (

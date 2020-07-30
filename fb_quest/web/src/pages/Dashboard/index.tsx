@@ -26,7 +26,7 @@ interface QuestionColumn {
 }
 
 const columns: QuestionColumn[] = [
-  { id: 'numeroQuestao', label: 'N Questão', minWidth: 170, align: 'center' },
+  { id: 'numeroQuestao', label: 'Questão', minWidth: 170, align: 'center' },
   { id: 'materia', label: 'Matéria', minWidth: 100, align: 'center' },
   {
     id: 'vestibular',
@@ -40,6 +40,7 @@ const columns: QuestionColumn[] = [
     minWidth: 170,
     align: 'right',
   },
+  { id: 'disponivel', label: 'Disponível', minWidth: 100, align: 'center' },
 ];
 
 const useStyles = makeStyles({
@@ -55,6 +56,7 @@ const useStyles = makeStyles({
 const Dashboard: React.FC = () => {
   const classes = useStyles();
   const [loadEditModal, setLoadEditModal] = useState(false);
+
   const [nextPageButton, setNextPageButton] = useState(true);
   const [backPageButton, setBackPageButton] = useState(true);
   const [page, setPage] = useState(0);
@@ -66,9 +68,16 @@ const Dashboard: React.FC = () => {
 
   async function loadQuestionsList() {
     const response = await api.get(`questions/list/${page + 1}`);
+    console.log(response.data);
+    setNextPageButton(response.data.length == 10 ? false : true);
+    setBackPageButton(page == 0 ? true : false);
 
     setQuestionsList(response.data);
   }
+
+  useEffect(() => {
+    loadQuestionsList();
+  }, [page]);
 
   useEffect(() => {
     loadQuestionsList();
@@ -76,7 +85,6 @@ const Dashboard: React.FC = () => {
 
   const loadQuestionEditModal = (question: IQuestion) => {
     setCurrentQuestion(question);
-    console.log(currentQuestion);
     setLoadEditModal(true);
   };
 
@@ -84,12 +92,26 @@ const Dashboard: React.FC = () => {
     setLoadEditModal(false);
   };
 
+  const handleUpdateList = () => {
+    setLoadEditModal(false);
+    setQuestionsList([]);
+    loadQuestionsList();
+  };
+
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
     newPage: number,
   ) => {
+    console.log('Testaddausdhaushduasudhus', newPage);
     setPage(newPage);
   };
+
+  function getValue(question: IQuestion, columnId: string) {
+    if (columnId === 'disponivel') {
+      const value = question[columnId] == true ? 'Sim' : 'Não';
+      return value;
+    } else return question[columnId];
+  }
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
@@ -134,7 +156,7 @@ const Dashboard: React.FC = () => {
                       {columns.map((column) => {
                         return (
                           <TableCell key={column.id}>
-                            {question[column.id]}
+                            {getValue(question, column.id)}
                           </TableCell>
                         );
                       })}
@@ -173,6 +195,7 @@ const Dashboard: React.FC = () => {
           question={currentQuestion}
           isOpen={loadEditModal}
           close={handleCloseModal}
+          update={handleUpdateList}
         />
       )}
     </Container>

@@ -39,15 +39,15 @@ class QuestionsRepository implements IQuestionsRepository {
     data: IUpdateQuestionDTO
   ): Promise<Question | undefined> {
     const oldQuestion = await this.ormRepository.findOne(id);
-
+    console.log('ATUALIZANDO .............', id);
     if (oldQuestion) {
-      console.log(data);
+      console.log('ATUALIZANDO A QUESTAO', oldQuestion.numeroQuestao);
       oldQuestion.enunciado = data.enunciado;
       oldQuestion.resolucao = data.resolucao;
       oldQuestion.disponivel = data.disponivel;
 
       const newQuestion = await this.ormRepository.save(oldQuestion);
-      console.log(newQuestion);
+      // console.log(newQuestion);
       return newQuestion;
     }
 

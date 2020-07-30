@@ -20,6 +20,7 @@ class UpdateQuestionService {
     id: string,
     { enunciado, resolucao, disponivel }: IRequest
   ): Promise<Question | undefined> {
+    console.log('TO NO SERVICE', id);
     const question = this.QuestionsRepository.update(id, {
       enunciado,
       resolucao,

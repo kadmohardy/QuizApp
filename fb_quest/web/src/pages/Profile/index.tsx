@@ -1,15 +1,7 @@
 import React, { useRef, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  AiOutlineShop,
-  AiOutlineUser,
-  AiOutlineMail,
-  AiOutlineInfoCircle,
-  AiOutlineLock,
-  AiOutlinePhone,
-  AiOutlineCamera,
-} from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -42,15 +34,6 @@ const Profile: React.FC = () => {
     }
     return {} as ProfileState;
   });
-
-  // const [userData, setUserData] = useState<UserDataProps>({
-  //   avatar: user.avatar,
-  //   cpf: user.cpf,
-  //   birthdate: user.birthdate,
-  //   email: user.email,
-  //   phone: user.phone,
-  //   password: user.password,
-  // });
 
   const handleSubmit = useCallback(() => {
     try {

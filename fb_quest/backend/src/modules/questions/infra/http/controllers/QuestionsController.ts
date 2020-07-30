@@ -7,11 +7,11 @@ import UpdateQuestionService from '@modules/questions/services/UpdateQuestionSer
 export default class QuestionsController {
   public async update(request: Request, response: Response): Promise<Response> {
     const { enunciado, resolucao, disponivel } = request.body;
-    const { questionId } = request.params;
+    const { id } = request.params;
 
     const updateQuestion = container.resolve(UpdateQuestionService);
-
-    const question = await updateQuestion.execute(questionId, {
+    console.log('TESTANDO NO CONTROLLER', id);
+    const question = await updateQuestion.execute(id, {
       enunciado,
       resolucao,
       disponivel,
