@@ -2,16 +2,11 @@ import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { FaFacebook, FaGooglePlus } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
-import {
-  AiOutlineUser,
-  AiOutlineKey,
-  AiOutlineMail,
-  AiOutlinePhone,
-} from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineKey, AiOutlineMail } from 'react-icons/ai';
 
 import {
   Container,

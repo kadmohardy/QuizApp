@@ -1,11 +1,10 @@
-import React, { useRef, useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useRef, useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { MdChildCare } from 'react-icons/md';
 
 import {
   Container,

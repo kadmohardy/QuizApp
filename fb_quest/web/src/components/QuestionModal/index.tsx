@@ -10,7 +10,7 @@ import {
   QuestionBottomBarContainer,
 } from './styles';
 import { IQuestion } from '../../interfaces/Questions';
-import { Editor, EditorState, RichUtils, ContentState } from 'draft-js';
+import { Editor, EditorState, ContentState } from 'draft-js';
 import api from '../../services/api';
 import 'draft-js/dist/Draft.css';
 import './editor.css';
@@ -45,7 +45,6 @@ const QuestionModal: React.FC<QuestionModalProps> = ({
   const styles = useStyles();
   const [checked, setChecked] = useState(question.disponivel);
 
-  const [open, setOpen] = useState(false);
   const [editorDescriptionState, setEditorDescriptionState] = useState(() =>
     EditorState.createWithContent(
       ContentState.createFromText(question.enunciado),

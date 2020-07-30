@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   Drawer,
   List,
-  Typography,
   Divider,
   IconButton,
   CssBaseline,
@@ -18,26 +17,16 @@ import {
 
 import {
   AiOutlineDashboard,
-  AiOutlineSetting,
-  AiOutlineStar,
   AiOutlineLogout,
   AiOutlineUser,
-  AiFillBook,
 } from 'react-icons/ai';
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import RootState from '../../store/modules/rootState';
-import { ProfileState } from '../../store/modules/user/types';
 
-import {
-  Profile,
-  TopToolbar,
-  TopBar,
-  StatusContainer,
-  StatusButton,
-} from './styles';
+import { Profile, TopToolbar, TopBar } from './styles';
 import logo from '../../assets/logo/logo.png';
 
 import { signOut } from '../../store/modules/auth/actions';
@@ -110,8 +99,6 @@ const menuItems = [
   { name: 'Dashboard', icon: <AiOutlineDashboard size={24} /> },
 ];
 
-const icons = [<AiOutlineSetting size={24} />, <AiOutlineLogout size={24} />];
-
 const MiniDrawer: React.FC = ({ children }) => {
   const profile = useSelector((state: RootState) => state.user.profile);
   const classes = useStyles();
@@ -119,7 +106,6 @@ const MiniDrawer: React.FC = ({ children }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [status, setStatus] = useState(false);
 
   const handleSignOut = useCallback(() => {
     dispatch(signOut());
@@ -207,7 +193,6 @@ const MiniDrawer: React.FC = ({ children }) => {
         }}
       >
         <div className={classes.toolbar}>
-          {/* <img src={wailterIcon} width={36} alt="Waiters" /> */}
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? (
               <ChevronRightIcon />

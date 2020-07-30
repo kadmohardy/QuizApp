@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import { FiMail, FiLock } from 'react-icons/fi';
 import { FaFacebook, FaGooglePlus } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';

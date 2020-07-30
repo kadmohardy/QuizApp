@@ -1,11 +1,8 @@
 import styledComponent from 'styled-components';
 
-import { makeStyles, withStyles, styled } from '@material-ui/core/styles';
-//background: linear-gradient(45deg, #943b5e, #d84e55, #fdab72);
-import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
-import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import { withStyles, styled } from '@material-ui/core/styles';
+
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Modal from '@material-ui/core/Modal';
 
 import GridList from '@material-ui/core/GridList';
 

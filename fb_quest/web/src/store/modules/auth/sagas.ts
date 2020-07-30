@@ -1,8 +1,7 @@
-import { takeLatest, call, put, all, delay } from 'redux-saga/effects';
+import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { AuthenticationTypes } from './types';
 
 import api from '../../../services/api';
-// import history from '../../../services/history';
 import { signFailure, signInSuccess } from './actions';
 import {
   SignInRequestActionType,
@@ -19,7 +18,6 @@ export function* signIn(action: SignInRequestActionType) {
     const { user, token } = response.data;
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
-    //yield delay(3000);
 
     yield put(signInSuccess(token, user));
   } catch (error) {
