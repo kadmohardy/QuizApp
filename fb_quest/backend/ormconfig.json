@@ -21,6 +21,6 @@
     "synchronize": true,
     "logging": true,
     "useUnifiedTopology": true,
-    "entities": ["./src/modules/**/infra/typeorm/schemas/*.ts"]
+    "entities": ["./src/modules/**/infra/typeorm/schemas/*.js"]
   }
 ]
