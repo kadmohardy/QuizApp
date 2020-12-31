@@ -8,17 +8,26 @@ export const Container = styled.KeyboardAvoidingView.attrs({
 })`
   flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
   background: #ffffff;
-  margin-top: 25px;
+  padding: 15px;
 `;
 
 export const WelcomeText = styled.Text`
-  color: #262626;
+  margin-top: 48px;
+  color: #000000;
   font-weight: 500;
   font-size: 18px;
+  opacity: 0.85;
+`;
+
+export const WelcomeSubText = styled.Text`
+  margin-top: 5px;
+  color: #000000;
+  font-weight: 500;
+  font-size: 24px;
+  opacity: 0.65;
 `;
 
 export const QuestionText = styled.Text`
@@ -76,3 +85,30 @@ export const QuestionsNumber = styled.Text`
 `;
 
 export const QuestionsLabel = styled.Text``;
+
+export const Section = styled.View`
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 15px 0px;
+`;
+
+export const SectionTitle = styled.Text`
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+`;
+
+export const Options = styled.View`
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+
+export const Content = styled.View`
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 24px;
+`;

@@ -26,6 +26,8 @@ import {
   ButtonText,
 } from './styles';
 import RootState from 'src/store/modules/rootState';
+import {color1} from '../../styles/Colors';
+import SubmitButton from '../../components/SubmitButton';
 
 const ProfileEdit: React.FC = () => {
   const navigation = useNavigation();
@@ -95,9 +97,13 @@ const ProfileEdit: React.FC = () => {
               <UpdateButtonWarning>Insira o email</UpdateButtonWarning>
             )}
           </EditItem>
-          <Button onPress={() => navigation.navigate('Profile')}>
-            <ButtonText>Atualizar</ButtonText>
-          </Button>
+
+          <SubmitButton
+            action={() => navigation.navigate('Profile')}
+            color={color1}
+            description="ATUALIZAR"
+            loading={false}
+          />
         </ContainerScrollable>
       </Content>
     </Container>

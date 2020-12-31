@@ -12,7 +12,7 @@ export const FormContainer = styled.View`
   display: flex;
   flex-direction: column;
 
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin-top: 250px;
 `;
@@ -114,10 +114,10 @@ export const SubmitButtonText = styled.Text`
 `;
 
 export const GeneralText = styled.Text`
-  margin-top: 25px;
   font-size: 16px;
   font-weight: 300;
-  color: #262626;
+  color: #000000;
+  opacity: 0.85;
 `;
 
 export const TabBarTitle = styled.Text`
@@ -148,4 +148,38 @@ export const FormItem = styled.View`
 
 export const ButtonLoading = styled.ActivityIndicator`
   margin-right: 10px;
+`;
+
+export const WelcomeTitle = styled.Text`
+  font-weight: bold;
+  font-size: 24px;
+  color: #000000;
+  margin: 5px 5px;
+  opacity: 0.85;
+`;
+
+export const WelcomeText = styled.Text`
+  font-weight: 300;
+  font-size: 18px;
+  color: #000000;
+  margin: 5px 5px;
+  opacity: 0.5;
+  margin-bottom: 24px;
+`;
+
+export const Separator = styled.View`
+  margin-bottom: 24px;
+`;
+
+export const Forgot = styled.View`
+  align-self: flex-end;
+  margin-top: 5px;
+  margin-right: 5px;
+`;
+
+export const Create = styled.View`
+  margin-top: 16px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;

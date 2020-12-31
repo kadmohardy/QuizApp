@@ -83,7 +83,9 @@ const Question: React.FC = () => {
   }
 
   function handleFinish() {
-    if (questions) dispatch(finishMock(questions, timer));
+    if (questions) {
+      dispatch(finishMock(questions, timer));
+    }
     navigation.navigate('Report');
     setLoadActionModal(false);
     setStartTimer(false);
@@ -119,7 +121,7 @@ const Question: React.FC = () => {
   return (
     <Container>
       <ContainerScrollable>
-        <QuestionNumber>{`Questão ` + currentQuestionId}</QuestionNumber>
+        <QuestionNumber>{'Questão ' + currentQuestionId}</QuestionNumber>
         {currentQuestion?.data.enunciado && (
           <HTMLView
             value={currentQuestion?.data.enunciado}
@@ -145,7 +147,7 @@ const Question: React.FC = () => {
           </BottomTabBarButton>
         )}
 
-        {currentQuestionId == questionsCount && (
+        {currentQuestionId === questionsCount && (
           <BottomTabBarButton onPress={() => setLoadActionModal(true)}>
             <TabBarButtonText>Finalizar</TabBarButtonText>
           </BottomTabBarButton>

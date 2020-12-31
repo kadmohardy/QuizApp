@@ -91,6 +91,21 @@ const Profile: React.FC = () => {
           <Button marginTop={40}>
             <ProfileItem>
               <ProfileItemLeftContainer>
+                <IconAntDesign name="profile" size={24} color="#999" />
+              </ProfileItemLeftContainer>
+              <ProfileItemCenterContainer>
+                <ProfileSubTitle size={16} weight={500}>
+                  Meu plano
+                </ProfileSubTitle>
+              </ProfileItemCenterContainer>
+              <ProfileItemRightContainer>
+                <IconAwesome name="angle-right" size={20} color="#999" />
+              </ProfileItemRightContainer>
+            </ProfileItem>
+          </Button>
+          <Button marginTop={10}>
+            <ProfileItem>
+              <ProfileItemLeftContainer>
                 <IconAntDesign name="bulb1" size={24} color="#999" />
               </ProfileItemLeftContainer>
               <ProfileItemCenterContainer>
@@ -103,7 +118,21 @@ const Profile: React.FC = () => {
               </ProfileItemRightContainer>
             </ProfileItem>
           </Button>
-
+          <Button marginTop={10}>
+            <ProfileItem>
+              <ProfileItemLeftContainer>
+                <IconAntDesign name="infocirlceo" size={24} color="#999" />
+              </ProfileItemLeftContainer>
+              <ProfileItemCenterContainer>
+                <ProfileSubTitle size={16} weight={500}>
+                  Sobre
+                </ProfileSubTitle>
+              </ProfileItemCenterContainer>
+              <ProfileItemRightContainer>
+                <IconAwesome name="angle-right" size={20} color="#999" />
+              </ProfileItemRightContainer>
+            </ProfileItem>
+          </Button>
           <Button marginTop={5} marginBottom={50} onPress={handleSignOut}>
             <ProfileItem>
               <ProfileTitle>Sair</ProfileTitle>

@@ -6,7 +6,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../pages/Home';
-import Dashboard from '../pages/Dashboard';
 import Report from '../pages/Report';
 import Question from '../pages/Question';
 import Options from '../pages/Options';
@@ -77,11 +76,11 @@ const AppRoutes = () => (
         if (route.name === 'HomeRoutes') {
           iconName = 'home';
         }
-        if (route.name === 'Dashboard') {
-          iconName = 'dashboard';
-        }
+        // if (route.name === 'Dashboard') {
+        //   iconName = 'dashboard';
+        // }
         if (route.name === 'ProfileRoutes') {
-          iconName = 'user';
+          iconName = 'setting';
         }
 
         return <IconAntDesign name={iconName} size={size} color={color} />;
@@ -96,11 +95,11 @@ const AppRoutes = () => (
         paddingBottom: 5,
       },
     }}>
-    <App.Screen
+    {/* <App.Screen
       name="Dashboard"
       component={Dashboard}
       options={{tabBarLabel: 'Avaliações'}}
-    />
+    /> */}
     <App.Screen
       name="HomeRoutes"
       component={HomeRoutes}
@@ -109,7 +108,7 @@ const AppRoutes = () => (
     <App.Screen
       name="ProfileRoutes"
       component={ProfileRoutes}
-      options={{tabBarLabel: 'Perfil'}}
+      options={{tabBarLabel: 'Ajustes'}}
     />
   </App.Navigator>
 );

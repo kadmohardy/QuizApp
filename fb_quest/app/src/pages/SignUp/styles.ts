@@ -214,3 +214,31 @@ export const IconButton = styled.TouchableOpacity`
 export const ButtonLoading = styled.ActivityIndicator`
   margin-right: 10px;
 `;
+
+export const WelcomeTitle = styled.Text`
+  font-weight: bold;
+  font-size: 24px;
+  color: #000000;
+  margin: 5px 5px;
+  opacity: 0.85;
+`;
+
+export const WelcomeText = styled.Text`
+  font-weight: 300;
+  font-size: 18px;
+  color: #000000;
+  margin: 5px 5px;
+  opacity: 0.5;
+`;
+
+export const FormContainer = styled.View`
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  justify-content: center;
+`;
+
+export const Separator = styled.View`
+  margin-bottom: 24px;
+`;

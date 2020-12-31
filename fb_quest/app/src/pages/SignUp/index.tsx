@@ -8,6 +8,9 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 MaterialIcon.loadFont();
 
 import {signUpRequest} from '../../store/modules/auth/actions';
+import {color0, colorl1} from '../../styles/Colors';
+import SubmitButton from '../../components/SubmitButton';
+
 import {
   Container,
   Button,
@@ -21,6 +24,10 @@ import {
   Terms,
   TabBarTitle,
   ButtonLoading,
+  WelcomeText,
+  WelcomeTitle,
+  FormContainer,
+  Separator,
 } from './styles';
 
 import RootState from 'src/store/modules/rootState';
@@ -29,8 +36,10 @@ const SignUp: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
   const emailRef = useRef();
 
   const navigation = useNavigation();
@@ -40,10 +49,10 @@ const SignUp: React.FC = () => {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: () => <TabBarTitle>CRIAR CONTA</TabBarTitle>,
+      headerTitle: () => <TabBarTitle>SIGN UP</TabBarTitle>,
       headerLeft: () => (
         <TabBarButton onPress={() => navigation.navigate('Welcome')}>
-          <IconAntDesign name="left" size={24} color="#262626" />
+          <IconAntDesign name="left" size={24} color={color0} />
         </TabBarButton>
       ),
     });
@@ -57,26 +66,27 @@ const SignUp: React.FC = () => {
 
   return (
     <Container>
-      <Section flex={4}>
+      <FormContainer>
+        <WelcomeTitle>Bem-vindo(a) ao iOn!</WelcomeTitle>
+        <WelcomeText>Preencha os campos abaixo</WelcomeText>
         <Form>
           <FormItem>
-            <IconAntDesign name="user" size={24} color="#1E66AB" />
+            <IconAntDesign name="user" size={24} color={color0} />
             <Input
               autocorrect={false}
               autoCapitalize="none"
-              placeholder="nome"
+              placeholder="Nome"
               value={name}
               onChangeText={setName}
             />
           </FormItem>
-
           <FormItem>
-            <IconAntDesign name="mail" size={24} color="#1E66AB" />
+            <IconAntDesign name="mail" size={24} color={color0} />
             <Input
               autocorrect={false}
               autoCapitalize="none"
               keyboardType="email-address"
-              placeholder="email"
+              placeholder="Email"
               returnKeyType="next"
               ref={emailRef}
               onSubmitEditing={() => passwordRef.current.focus()}
@@ -85,33 +95,48 @@ const SignUp: React.FC = () => {
             />
           </FormItem>
           <FormItem>
-            <IconAntDesign name="key" size={24} color="#1E66AB" />
+            <IconAntDesign name="lock1" size={24} color={color0} />
             <Input
               autocorrect={false}
               autoCapitalize="none"
-              placeholder="senha"
+              placeholder="Senha"
               ref={passwordRef}
-              returnKeyType="send"
-              //onSubmitEditing={handleSubmit}
+              returnKeyType="next"
+              onSubmitEditing={() => confirmPasswordRef.current.focus()}
               value={password}
               onChangeText={setPassword}
               secureTextEntry
             />
           </FormItem>
-
-          <Button onPress={handleSubmit}>
-            {loading && <ButtonLoading size="small" color="#ffffff" />}
-            <ButtonText>Criar Conta</ButtonText>
-          </Button>
+          <FormItem>
+            <IconAntDesign name="lock1" size={24} color={color0} />
+            <Input
+              autocorrect={false}
+              autoCapitalize="none"
+              placeholder="Confirmar senha"
+              ref={confirmPasswordRef}
+              returnKeyType="send"
+              //onSubmitEditing={handleSubmit}
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+              secureTextEntry
+            />
+          </FormItem>
+          <Separator />
+          <SubmitButton
+            action={() => navigation.navigate('SignUp')}
+            color={colorl1}
+            description="CRIAR CONTA"
+            loading={loading}
+          />
         </Form>
-
         <Terms>
           <Label size={12} color="#262626" marginTop={10} opacity={0.8}>
             Ao criar uma conta, você concorda com nossos Termos e com a Política
-            de Privacidade
+            de Privacidade.
           </Label>
         </Terms>
-      </Section>
+      </FormContainer>
     </Container>
   );
 };
